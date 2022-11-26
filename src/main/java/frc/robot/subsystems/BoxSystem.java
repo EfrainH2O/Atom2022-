@@ -9,16 +9,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Shooter extends SubsystemBase{
+public class BoxSystem extends SubsystemBase{
     
     //Hardware ----------------------------------------------------------------->
     //private CANSparkMax motor1 = new CANSparkMax(Constants.kShooter1Id, MotorType.kBrushless);
     //private CANSparkMax motor2 = new CANSparkMax(Constants.kShooter2Id, MotorType.kBrushless);
-    private TalonSRX shooterMotor = new TalonSRX(Constants.kShooter1Id);
+    private TalonSRX armMotor = new TalonSRX(Constants.kShooter1Id);
     //INPUTS ------------------------------------------------------------------>
     boolean shooterActive = false; 
 
-    public Shooter() {} //constructor del subsistema
+    public BoxSystem() {} //constructor del subsistema
 
     //------------------// Funciones del subsistema //-------------------------------//
 
@@ -26,11 +26,11 @@ public class Shooter extends SubsystemBase{
     public void shoot(boolean inShooterActive){
         shooterActive = inShooterActive;
         if (shooterActive){
-            shooterMotor.set(ControlMode.PercentOutput, Constants.kShooterDemand);
+            armMotor.set(ControlMode.PercentOutput, Constants.kShooterDemand);
         
         }
         else{
-            shooterMotor.set(ControlMode.PercentOutput,0);
+            armMotor.set(ControlMode.PercentOutput,0);
         
         }
     }

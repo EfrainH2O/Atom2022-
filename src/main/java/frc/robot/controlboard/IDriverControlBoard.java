@@ -6,11 +6,11 @@ public interface IDriverControlBoard {
 
     double getVelocityY();
 
+    double getTotalVelocityX();
+
     double getDirectThrottle();
 
     double getTurn();
 
     boolean getInverted();
-
-    boolean getIntake();
 }

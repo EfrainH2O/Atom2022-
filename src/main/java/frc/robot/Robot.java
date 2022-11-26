@@ -10,11 +10,10 @@ import frc.robot.Auto.Actions.MoveForwardAction;
 import frc.robot.Auto.Actions.StopAction;
 import frc.robot.Auto.Modes.LineTimer;
 import frc.robot.controlboard.ControlBoard;
+import frc.robot.subsystems.BoxSystem;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.LogsOutput;
-import frc.robot.subsystems.Shooter;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
@@ -23,11 +22,7 @@ public class Robot extends TimedRobot {
     Drive mDrive = new Drive();
     Intake mIntake = new Intake();
     Hopper mHopper = new Hopper();
-    Shooter mShooter = new Shooter();
-    LogsOutput mLogsOutput = new LogsOutput(); 
-    
-  //Delcaracion del compresor      
-    private final Compressor mCompressor = new Compressor(PneumaticsModuleType.CTREPCM);
+    BoxSystem mBoxSystem = new BoxSystem();
     
   //Incializacion de acciones autonomo  
     GetTimeAction mAutoTimer = new GetTimeAction();
@@ -37,10 +32,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    
-    mCompressor.enableDigital(); //habilita el compresor
-    mCompressor.disable();
-    mLogsOutput.MasterLosgsOutputs(); //Manda llmar la funcion de Logs
   }
 
   @Override
@@ -77,20 +68,14 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    mCompressor.enableDigital(); 
     //drive
-    mDrive.mainDrive( ControlBoard.getInstance().getVelocityY(), ControlBoard.getInstance().getTurn(), 
-      ControlBoard.getInstance().getDirectThrottle() );
+    mDrive.mainDrive( ControlBoard.getInstance().getVelocityY(), ControlBoard.getInstance().getTotalVelocityX(), 
+      ControlBoard.getInstance().getDirectThrottle(), ControlBoard.getInstance().getInverted());
 
     //intake
-    mIntake.takeIn( ControlBoard.getInstance().getIntake() ); //boton B
-    mIntake.takeOut( ControlBoard.getInstance().getIntakeInverted()); //boton A
-    
+    mIntake.takeIn( ControlBoard.getInstance().getIntake() ); //boton X
     //hopper
-    mHopper.hopperAction(ControlBoard.getInstance().getHopperSpeed()); //diferencia triggers
-
-    //shooter
-    mShooter.shoot(ControlBoard.getInstance().getShooter()); //boton rb
+    mHopper.hopperAction(ControlBoard.getInstance().getHopper());  //boton B
   }
 
   @Override

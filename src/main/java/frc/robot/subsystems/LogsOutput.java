@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class LogsOutput extends SubsystemBase {
   //Drive mDrive = new Drive();
   //Intake mIntake = new Intake();  
-  Shooter mShooter = new Shooter();
+  BoxSystem mBoxSystem = new BoxSystem();
   public LogsOutput() {} //constructor del subsistema
 
   //------------------// Funciones del subsistema //-------------------------------//
@@ -14,7 +14,7 @@ public class LogsOutput extends SubsystemBase {
   
   public void MasterLosgsOutputs(){
     //mDrive.DriveLogsOutput(); //Llamar las funciones de output de cada subsistema
-    mShooter.ShooterLogsOutput();
+    mBoxSystem.ShooterLogsOutput();
   }
     
   @Override

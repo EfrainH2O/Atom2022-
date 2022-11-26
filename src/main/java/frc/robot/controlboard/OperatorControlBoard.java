@@ -22,66 +22,21 @@ public class OperatorControlBoard implements IOperatorControlBoard {
 
     @Override
     public boolean getIntake() {
-        return mController.getButton(XboxController.Button.B);
+        return mController.getButtonReleased(XboxController.Button.X);
     }
-    //ADD
     @Override
-    public boolean getIntakeInverted() {
-        return mController.getButton(XboxController.Button.A);
+    public boolean getHopper() {
+        return mController.getButtonReleased(XboxController.Button.B);
     }
-
     @Override
-    public boolean getAutoAimMode(){
-        return mController.getButtonReleased(XboxController.Button.Y);
+    public double getBox(){
+        return mController.getTrigger(XboxController.Side.RIGHT);
     }
-
     @Override
-    public double getHopperSpeed () {
-        return mController.getTrigger(XboxController.Side.RIGHT) - mController.getTrigger(XboxController.Side.LEFT);
+    public double releaseBox(){
+        return mController.getTrigger(XboxController.Side.LEFT);
     }
-
-    @Override
-    public boolean getShooter() {
-        return mController.getButtonReleased(XboxController.Button.RB);
-    }
-
-    @Override
-    public boolean getHangerFirstUp(){
-        return mController.getButton(XboxController.Button.START) &&  mController.getButton(XboxController.Button.X);
-    }
-
-    @Override
-    public boolean getHangerDown(){
-        return mController.getButton(XboxController.Button.START) &&  mController.getButton(XboxController.Button.A);
-    }
-
-    @Override
-    public boolean getHangerSequence(){
-        return mController.getButton(XboxController.Button.START) &&  mController.getButton(XboxController.Button.BACK);
-    }
-
-    @Override
-    public double getRightYAxis() {
-        return mController.getJoystick(XboxController.Side.RIGHT, XboxController.Axis.Y);
-    }
-
-    @Override
-    public double getTurretSpeed() {
-        return mController.getJoystick(XboxController.Side.RIGHT, XboxController.Axis.X);
-    }
-
-    @Override
-    public double getTurretX(){
-        return mController.getJoystick(XboxController.Side.LEFT, XboxController.Axis.X);
-    }
-
-    @Override
-    public double getTurretY(){
-        return mController.getJoystick(XboxController.Side.LEFT, XboxController.Axis.Y);
-    }
-
-    @Override
-    public int getTurretJump(){
-        return mController.getDPad();
+    public double armMove(){
+        return getBox()- releaseBox();
     }
 }

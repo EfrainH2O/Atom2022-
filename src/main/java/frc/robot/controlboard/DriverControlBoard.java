@@ -2,6 +2,7 @@
 package frc.robot.controlboard;
 
 import frc.robot.Constants;
+import frc.robot.controlboard.XboxController.Button;
 
 public class DriverControlBoard implements IDriverControlBoard {
     private static DriverControlBoard mInstance = null;
@@ -18,6 +19,15 @@ public class DriverControlBoard implements IDriverControlBoard {
 
     private DriverControlBoard() {
         mController = new XboxController(Constants.kDriverControlPort);
+    }
+    @Override
+    public double getTotalVelocityX(){
+        if(getVelocityX()<getTurn()){
+            return getTurn();
+        }
+        else{
+            return getVelocityX();
+        }
     }
 
     @Override
@@ -42,11 +52,7 @@ public class DriverControlBoard implements IDriverControlBoard {
 
     @Override
     public boolean getInverted() {
-        return mController.getButtonReleased(XboxController.Button.Y);
+        return mController.getButtonReleased(XboxController.Button.X);
     }
 
-    @Override
-    public boolean getIntake() {
-        return mController.getButton(XboxController.Button.RB);
-    }
 }

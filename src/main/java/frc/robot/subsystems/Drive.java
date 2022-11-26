@@ -29,16 +29,21 @@ public class Drive extends SubsystemBase {
   boolean rampActive = true;
   double leftPwm = 0;
   double rightPwm = 0;
-    
+  boolean direction = false; 
   public Drive() {} //constructor del subsistema
 
   //------------------// Funciones del subsistema //-------------------------------//
 
   //funcion principal de Drive con argumentos de entrada de controles
-  public void mainDrive(double xInSpeed, double yInSpeed, double inDirectThrottle){
+  public void mainDrive(double xInSpeed, double yInSpeed, double inDirectThrottle, boolean inDirection){
     xSpeed = xInSpeed;
     ySpeed = yInSpeed;
+    direction = inDirection;
     absMove = inDirectThrottle*Constants.kDriveSensitivity; //valor de absMove con sensibilidad del control
+    if (direction == true){
+      xSpeed = -xSpeed;
+      ySpeed = -ySpeed;
+    }
 
     if(xSpeed>=0){
       leftPwm = ((xSpeed) - ySpeed)*Constants.kDriveSensitivity; //sensibilidad del control agregada
@@ -59,7 +64,7 @@ public class Drive extends SubsystemBase {
     else{
       final_right_front_demand = speedTramp(rightPwm, final_right_front_demand);
       final_right_back_demand = speedTramp(rightPwm, final_right_back_demand);
-      final_left_front_demand = speedTramp(-leftPwm, final_left_front_demand);
+      final_left_front_demand = speedTramp(-leftPwm, final_left_front_demand); 
       final_left_back_demand = speedTramp(-leftPwm, final_left_back_demand);
     }
 

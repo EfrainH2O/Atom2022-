@@ -13,15 +13,26 @@ public class Hopper extends SubsystemBase {
   private TalonSRX hopperMotor = new TalonSRX(Constants.kHopperId);
   
   //OUTPUTS ----------------------------------------------------------------->
-  double hopperSpeed = 0;
+  boolean hopperA = false;
+  boolean hopperOn= false;
       
   public Hopper() {}  //constructor del subsistema
 
   //------------------// Funciones del subsistema //-------------------------------//
   
-  public void hopperAction(double inHopperSpeed){ //agregar los limites de arriba y abajo
-    hopperSpeed = inHopperSpeed;
-    hopperMotor.set(ControlMode.PercentOutput, hopperSpeed);
+  public void hopperAction(boolean inHopper){ //agregar los limites de arriba y abajo
+    hopperA = inHopper;
+    if (hopperA == true){
+      if (hopperOn==false) {
+        hopperOn=true;
+        hopperMotor.set(ControlMode.PercentOutput, 1);
+      }
+      else {
+        hopperOn=false;
+        hopperMotor.set(ControlMode.PercentOutput, 0);
+      }
+    }
+  
   }
   //Funcion para poner salidas a SmartDashBoard 
 public void FeederLogsOutput(){/*codigo para dar salidas a SmartDashBoard*/}

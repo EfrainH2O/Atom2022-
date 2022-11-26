@@ -20,7 +20,11 @@ public class ControlBoard implements IControlBoard {
         mDriverControlBoard =  DriverControlBoard.getInstance();
         mOperatorControlBoard = OperatorControlBoard.getInstance();
     }
-
+    @Override
+    public double getTotalVelocityX(){
+        return mDriverControlBoard.getTotalVelocityX();
+    }
+    
     @Override
     public double getVelocityX() {
         return mDriverControlBoard.getVelocityX();
@@ -45,69 +49,27 @@ public class ControlBoard implements IControlBoard {
     public boolean getInverted() {
         return mDriverControlBoard.getInverted();
     }
-
+    //parte de mecanismos
     @Override
     public boolean getIntake() {
         return mOperatorControlBoard.getIntake();
     }
-    //ADD
     @Override
-    public boolean getIntakeInverted() {
-        return mOperatorControlBoard.getIntakeInverted();
+    public boolean getHopper(){
+        return mOperatorControlBoard.getHopper();
+    }
+    @Override
+    public double getBox(){
+        return mOperatorControlBoard.getBox();
+    }
+    @Override
+    public double releaseBox(){
+        return mOperatorControlBoard.releaseBox();
+    }
+    @Override
+    public double armMove(){
+        return mOperatorControlBoard.armMove();
     }
 
-    @Override
-    public boolean getAutoAimMode(){
-        return mOperatorControlBoard.getAutoAimMode();
-    }
-
-    @Override
-    public double getHopperSpeed (){
-        return mOperatorControlBoard.getHopperSpeed();
-    }
-
-    @Override
-    public boolean getShooter() {
-        return mOperatorControlBoard.getShooter();
-    }
-
-    @Override
-    public boolean getHangerFirstUp(){
-        return mOperatorControlBoard.getHangerFirstUp();
-    }
-
-    @Override
-    public boolean getHangerDown(){
-        return mOperatorControlBoard.getHangerDown();   
-    }
-
-    @Override
-    public boolean getHangerSequence(){
-        return mOperatorControlBoard.getHangerSequence();
-    }
-
-    @Override
-    public double getRightYAxis() {
-        return mOperatorControlBoard.getRightYAxis();
-    }
-
-    @Override
-    public double getTurretSpeed() {
-        return mOperatorControlBoard.getTurretSpeed();
-    }
-
-    @Override
-    public double getTurretX() {
-        return mOperatorControlBoard.getTurretX();
-    }
-
-    @Override
-    public double getTurretY() {
-        return mOperatorControlBoard.getTurretY();
-    }
-
-    @Override
-    public int getTurretJump() {
-        return mOperatorControlBoard.getTurretJump();
-    }
+  
 }
