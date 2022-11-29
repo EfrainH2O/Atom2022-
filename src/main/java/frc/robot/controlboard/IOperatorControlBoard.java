@@ -2,14 +2,11 @@ package frc.robot.controlboard;
 
 public interface IOperatorControlBoard {
 
-        boolean getIntake();
-
-        boolean getHopper();
+        boolean getContinous();
         
-        double getBox();
+        boolean armMove();
 
-        double releaseBox();
-        
-        double armMove();
+        boolean getAlterno();
+
     
 }

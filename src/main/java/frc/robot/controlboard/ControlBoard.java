@@ -51,25 +51,17 @@ public class ControlBoard implements IControlBoard {
     }
     //parte de mecanismos
     @Override
-    public boolean getIntake() {
-        return mOperatorControlBoard.getIntake();
+    public boolean getContinous() {
+        return mOperatorControlBoard.getContinous();
     }
     @Override
-    public boolean getHopper(){
-        return mOperatorControlBoard.getHopper();
-    }
-    @Override
-    public double getBox(){
-        return mOperatorControlBoard.getBox();
-    }
-    @Override
-    public double releaseBox(){
-        return mOperatorControlBoard.releaseBox();
-    }
-    @Override
-    public double armMove(){
+    public boolean armMove(){
         return mOperatorControlBoard.armMove();
     }
-
+    @Override
+    public boolean getAlterno(){
+        return mOperatorControlBoard.getAlterno();
+    }
+  
   
 }

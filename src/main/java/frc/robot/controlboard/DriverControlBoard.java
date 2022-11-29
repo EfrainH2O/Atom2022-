@@ -2,7 +2,6 @@
 package frc.robot.controlboard;
 
 import frc.robot.Constants;
-import frc.robot.controlboard.XboxController.Button;
 
 public class DriverControlBoard implements IDriverControlBoard {
     private static DriverControlBoard mInstance = null;

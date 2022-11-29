@@ -16,19 +16,12 @@ public final class Constants {
 
     //Intake Subsistem
     public static final int kIntakeId = 5;
-    public static final double kIntakeDemand = 0.9;
-    public static final int kIntakeSolenoidId1 = 0;
-    public static final int kIntakeSolenoidId2 = 1;
 
     //Hopper
     public static final int kHopperId = 12;
 
-    //Shooter
-    public static final int kShooter1Id = 13; //checar que ids van a ser
-    public static final double kShooterDemand = 0.9; //checar
+    //BoxSystem
+    public static final int kArmsId = 13; //checar que ids van a ser
 
-    //Hanger
-    public static final int kHangerId = 14;
-    public static final double kHangerHighPosition = 100;
-    public static final double kHangerLowPosition = 0;
+
 }

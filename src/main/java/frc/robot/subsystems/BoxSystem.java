@@ -2,8 +2,6 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -12,32 +10,37 @@ import frc.robot.Constants;
 public class BoxSystem extends SubsystemBase{
     
     //Hardware ----------------------------------------------------------------->
-    //private CANSparkMax motor1 = new CANSparkMax(Constants.kShooter1Id, MotorType.kBrushless);
-    //private CANSparkMax motor2 = new CANSparkMax(Constants.kShooter2Id, MotorType.kBrushless);
-    private TalonSRX armMotor = new TalonSRX(Constants.kShooter1Id);
+    private TalonSRX armMotor = new TalonSRX(Constants.kArmsId);
     //INPUTS ------------------------------------------------------------------>
-    boolean shooterActive = false; 
+    boolean BoxState = false; 
+    boolean ArmIn = false;
 
     public BoxSystem() {} //constructor del subsistema
 
     //------------------// Funciones del subsistema //-------------------------------//
 
     //Funcion para disparar
-    public void shoot(boolean inShooterActive){
-        shooterActive = inShooterActive;
-        if (shooterActive){
-            armMotor.set(ControlMode.PercentOutput, Constants.kShooterDemand);
-        
-        }
-        else{
-            armMotor.set(ControlMode.PercentOutput,0);
-        
+    public void TBoxSystem(boolean inArm){
+        ArmIn = inArm;
+        if (ArmIn==true){
+            if(BoxState==false){
+                BoxState=true;
+            armMotor.set(ControlMode.PercentOutput, 1);
+            //delay
+            armMotor.set(ControlMode.PercentOutput, 0);
+            }
+            else if (BoxState==true){
+                BoxState=false;
+            armMotor.set(ControlMode.PercentOutput, -1);
+            //delay
+            armMotor.set(ControlMode.PercentOutput, 0);
+            }
         }
     }
 
     //Funcion para poner salidas a SmartDashBoard 
     public void ShooterLogsOutput(){/*codigo para dar salidas a SmartDashBoard*/
-        SmartDashboard.putBoolean("Shooter Active", shooterActive);
+        SmartDashboard.putBoolean("Shooter Active", BoxState);
     }
         
     @Override

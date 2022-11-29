@@ -19,24 +19,16 @@ public class OperatorControlBoard implements IOperatorControlBoard {
     private OperatorControlBoard() {
         mController = new XboxController(Constants.kOperatorControlPort);
     }
-
     @Override
-    public boolean getIntake() {
+    public boolean getContinous() {
         return mController.getButtonReleased(XboxController.Button.X);
     }
     @Override
-    public boolean getHopper() {
+    public boolean armMove(){
         return mController.getButtonReleased(XboxController.Button.B);
     }
     @Override
-    public double getBox(){
-        return mController.getTrigger(XboxController.Side.RIGHT);
-    }
-    @Override
-    public double releaseBox(){
-        return mController.getTrigger(XboxController.Side.LEFT);
-    }
-    public double armMove(){
-        return getBox()- releaseBox();
+    public boolean getAlterno(){
+        return mController.getButtonReleased(XboxController.Button.A);
     }
 }
