@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -10,10 +11,13 @@ import frc.robot.Constants;
 public class BoxSystem extends SubsystemBase{
     
     //Hardware ----------------------------------------------------------------->
-    private TalonSRX armMotor = new TalonSRX(Constants.kArmsId);
+    public TalonSRX armMotor = new TalonSRX(Constants.kArmsId);
     //INPUTS ------------------------------------------------------------------>
     boolean BoxState = false; 
-    boolean ArmIn = false;
+    boolean ArmIn = true;
+    DigitalInput DLimitSwitch = new DigitalInput(Constants.kDLimitSwitch);
+    DigitalInput ULimitSwitch = new DigitalInput(Constants.kULimitSwitch);
+    DigitalInput BLimitSwitch = new DigitalInput(Constants.kBLimitSwitch);
 
     public BoxSystem() {} //constructor del subsistema
 
@@ -22,25 +26,33 @@ public class BoxSystem extends SubsystemBase{
     //Funcion para disparar
     public void TBoxSystem(boolean inArm){
         ArmIn = inArm;
-        if (ArmIn==true){
             if(BoxState==false){
-                BoxState=true;
-            armMotor.set(ControlMode.PercentOutput, 1);
-            //delay
-            armMotor.set(ControlMode.PercentOutput, 0);
-            }
-            else if (BoxState==true){
-                BoxState=false;
-            armMotor.set(ControlMode.PercentOutput, -1);
-            //delay
-            armMotor.set(ControlMode.PercentOutput, 0);
-            }
+           GoDown();
         }
-    }
 
+            else if (BoxState==true){
+            GoUp();
+              }
+    
+        }
+public void GoDown(){
+    BoxState=true;
+    while(!DLimitSwitch.get()){
+armMotor.set(ControlMode.PercentOutput, 1);
+    }
+armMotor.set(ControlMode.PercentOutput, 0);
+}
+
+public void GoUp(){
+BoxState=false;
+        while(!ULimitSwitch.get()){
+    armMotor.set(ControlMode.PercentOutput, -1);
+                }
+    armMotor.set(ControlMode.PercentOutput, 0);
+}
     //Funcion para poner salidas a SmartDashBoard 
     public void ShooterLogsOutput(){/*codigo para dar salidas a SmartDashBoard*/
-        SmartDashboard.putBoolean("Shooter Active", BoxState);
+        SmartDashboard.putBoolean("Estado de LImits", ULimitSwitch.get());
     }
         
     @Override

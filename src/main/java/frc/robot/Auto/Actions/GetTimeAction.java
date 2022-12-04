@@ -18,7 +18,4 @@ public class GetTimeAction{
   public double getRelativeTimer(){
     return relativeTimer;
   }
-  public double getTheTime(){
-    return getAbsoluteTimer()-getRelativeTimer();
-  }
 }

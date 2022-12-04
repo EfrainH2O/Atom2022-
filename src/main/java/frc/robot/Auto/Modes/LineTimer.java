@@ -12,9 +12,13 @@ public class LineTimer{
   GetTimeAction mGetTimeAction = new GetTimeAction();
   
   public void finalLineTimer(){
-    if(mGetTimeAction.getTheTime()<3){
+    if(mGetTimeAction.getAbsoluteTimer()-mGetTimeAction.getRelativeTimer()<3){
         mForwardAction.finalMoveForwardACtion();
       }
-      else mStopAction.finalStopAction();
+      else if(mGetTimeAction.getAbsoluteTimer()-mGetTimeAction.getRelativeTimer()==5){
+        
+      }
+
+
   }
 }

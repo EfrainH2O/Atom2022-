@@ -29,6 +29,6 @@ public class OperatorControlBoard implements IOperatorControlBoard {
     }
     @Override
     public boolean getAlterno(){
-        return mController.getButtonReleased(XboxController.Button.A);
+        return mController.getButton(XboxController.Button.A);
     }
 }

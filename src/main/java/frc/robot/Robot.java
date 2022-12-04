@@ -47,12 +47,12 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
-    mAutoTimer.autoAbsoluteTimeControl(); //inicializa el timeStap absoluto
+   mAutoTimer.autoAbsoluteTimeControl(); //inicializa el timeStap absoluto
     if(mAutoTimer.getAbsoluteTimer()-mAutoTimer.getRelativeTimer()<2){
-      mMoveForwardAction.finalMoveForwardACtion();
+     mMoveForwardAction.finalMoveForwardACtion();
     }
     else mStopAction.finalStopAction();
-  }
+ }
 
   @Override
   public void teleopInit() {
@@ -65,11 +65,12 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     //drive
     mDrive.mainDrive( ControlBoard.getInstance().getVelocityY(), ControlBoard.getInstance().getTotalVelocityX(), 
-      ControlBoard.getInstance().getDirectThrottle(), ControlBoard.getInstance().getInverted());
-// estado 
-    mAllSystems.TAllSystems(ControlBoard.getInstance().getContinous(), ControlBoard.getInstance().getAlterno()); //boton X
+    ControlBoard.getInstance().getDirectThrottle(), ControlBoard.getInstance().getInverted());
+    //Movimient general con joystick derecho. solo adelante gatillos y solo girar sobre su eje es el joystick izquierdo.
+// Hopper y intake
+    mAllSystems.TAllSystems(ControlBoard.getInstance().getContinous(), ControlBoard.getInstance().getAlterno()); //boton X y funcion alterno es algo especial solo cuando este apagdo, se enciede los sistemas mientras que este boton este presionado.
     // arms
-    mBoxSystem.TBoxSystem(ControlBoard.getInstance().armMove());//botonB
+   mBoxSystem.TBoxSystem(ControlBoard.getInstance().armMove());//boton B
   }
   
 

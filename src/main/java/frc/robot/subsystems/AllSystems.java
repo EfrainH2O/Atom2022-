@@ -38,15 +38,20 @@ public class AllSystems extends SubsystemBase {
    }
 
    if((path==false)&&(Full==true)){
+    while((path==false)&&(Full==true)){
     intakeMotor.set(ControlMode.PercentOutput, 1);
     hopperMotor.set(ControlMode.PercentOutput, 1);
-//delay time between intake to hopper
+  }
     intakeMotor.set(ControlMode.PercentOutput, -1);
     hopperMotor.set(ControlMode.PercentOutput, 0);
    }
-
-
   }
+  public void AutoAllSystems(){
+       path = false;
+      intakeMotor.set(ControlMode.PercentOutput, 1);
+      hopperMotor.set(ControlMode.PercentOutput, 1);
+
+    }
   //Funcion para poner salidas a SmartDashBoard 
   public void IntakeLogsOutput(){
     SmartDashboard.putBoolean("State", State);
