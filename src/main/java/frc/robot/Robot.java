@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Auto.Actions.GetTimeAction;
 import frc.robot.Auto.Actions.MoveForwardAction;
 import frc.robot.Auto.Actions.StopAction;
+import frc.robot.Auto.Actions.TurnLeftAction;
+import frc.robot.Auto.Actions.TurnRightAction;
 import frc.robot.Auto.Modes.LineTimer;
 import frc.robot.controlboard.ControlBoard;
 import frc.robot.subsystems.AllSystems;
@@ -24,6 +26,8 @@ public class Robot extends TimedRobot {
     MoveForwardAction mMoveForwardAction = new MoveForwardAction();
     StopAction mStopAction = new StopAction();
     LineTimer mLineTimerMode = new LineTimer();
+    TurnLeftAction mTurnLeftAuto = new TurnLeftAction();
+    TurnRightAction mTurnRightAction = new TurnRightAction();
 
   @Override
   public void robotInit() {
